@@ -1,7 +1,17 @@
 import pandas as pd
 import os
+import argparse
+import yaml
 
-danh_sach_moc=["2025-09-14", "2025-12-14", "2026-03-24", "2026-06-20"]
+parser = argparse.ArgumentParser()
+parser.add_argument("--config",type = str,default="configs/madrid.yaml")
+args = parser.parse_args()
+
+with open(args.config,"r",encoding="utf-8") as file:
+     config = yaml.safe_load(file)
+
+danh_sach_moc=[str(a) for a in config["snapshots"]]
+
 os.makedirs("data/processed", exist_ok=True)
 os.makedirs("data/samples", exist_ok=True)
 

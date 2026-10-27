@@ -1,0 +1,4 @@
+city: madrid
+data_root: spain/comunidad-de-madrid/madrid  
+currency: EUR
+snapshots: [2025-09-14, 2025-12-14, 2026-03-24, 2026-06-20]

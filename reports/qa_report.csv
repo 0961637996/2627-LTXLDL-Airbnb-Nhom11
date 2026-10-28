@@ -1,0 +1,13 @@
+snapshot_date,dataset,total_processed_rows,missing_price_count,zero_reviews_count,apt_count,pri_count,area_distribution,action
+2025-09-14,listings,1000,85.0,50.0,875.0,125.0,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}",Cleaned price format
+2025-12-14,listings,1000,1000.0,30.0,875.0,125.0,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}",Cleaned price format
+2026-03-24,listings,1000,67.0,25.0,875.0,125.0,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}",Cleaned price format
+2026-06-20,listings,1000,20.0,25.0,875.0,125.0,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}",Cleaned price format
+2025-09-14,calendar,365000,,,,,,Converted available to 1/0 and cleaned price format
+2025-12-14,calendar,365000,,,,,,Converted available to 1/0 and cleaned price format
+2026-03-24,calendar,365000,,,,,,Converted available to 1/0 and cleaned price format
+2026-06-20,calendar,365000,,,,,,Converted available to 1/0 and cleaned price format
+2025-09-14,reviews,5000,,,,,,Merged securely without listing_id duplication
+2025-12-14,reviews,5000,,,,,,Merged securely without listing_id duplication
+2026-03-24,reviews,5000,,,,,,Merged securely without listing_id duplication
+2026-06-20,reviews,5000,,,,,,Merged securely without listing_id duplication

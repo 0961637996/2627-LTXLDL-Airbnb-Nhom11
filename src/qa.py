@@ -25,16 +25,52 @@ df_rev_assign = df_rev_assign.drop(columns=["listing_id"], errors="ignore") # Tr
 
 # 3. XỬ LÝ TỪNG MỐC THỜI GIAN
 for moc in snapshots:
-    print(f"--- Đang xử lý lọc cho mốc: {moc} ---")
+    print(f"\n--- Đang xử lý lọc cho mốc: {moc} ---")
     
     # --- A. BẢNG LISTINGS ---
     df_l = pd.read_csv(f"data/raw/{moc}_listings.csv.gz", dtype={"id": str})
     n_raw_l = len(df_l)
+    
+    # Ghép bảng để lọc ID và lấy thêm cột analysis_area từ file phân công
     df_l = df_l.merge(df_list_assign, on="id", how="inner")
     
     # QA Log cho Listings (Chỉ log việc lọc)
     log_qa(moc, "listings", "filter_1000_ids", n_raw_l, n_raw_l - len(df_l), "dropped_unassigned")
     df_l.to_csv(f"data/processed/{moc}_listings.csv", index=False)
+
+    # =====================================================================
+    # THÊM MỚI: TỰ KIỂM TRA SAU KHI LỌC BẢNG LISTINGS (YÊU CẦU 4)
+    # =====================================================================
+    print(f"  [Tự kiểm tra QA] Mốc {moc}:")
+    
+    # 4.1 Kiểm tra loại phòng
+    if "room_type" in df_l.columns:
+        apt = (df_l["room_type"] == "Entire home/apt").sum()
+        pri = (df_l["room_type"] == "Private room").sum()
+        print(f"    - Entire home/apt: {apt} (Kỳ vọng: 875) -> {'ĐẠT' if apt == 875 else 'SAI'}")
+        print(f"    - Private room: {pri} (Kỳ vọng: 125) -> {'ĐẠT' if pri == 125 else 'SAI'}")
+    
+    # 4.2 Kiểm tra number_of_reviews = 0
+    if "number_of_reviews" in df_l.columns:
+        # Ép kiểu an toàn sang số thực, điền -1 cho khoảng trống để đếm đúng số 0
+        so_0_rev = (pd.to_numeric(df_l["number_of_reviews"], errors='coerce').fillna(-1) == 0).sum()
+        # Đề bài yêu cầu lần lượt 4 mốc là: 50, 30, 25, 25
+        expected_0_rev = {0: 50, 1: 30, 2: 25, 3: 25}.get(snapshots.index(moc), -1)
+        print(f"    - number_of_reviews = 0: {so_0_rev} (Kỳ vọng: {expected_0_rev}) -> {'ĐẠT' if so_0_rev == expected_0_rev else 'SAI'}")
+
+    # 4.3 Kiểm tra phân bố vùng (analysis_area)
+    if "analysis_area" in df_l.columns:
+        area_counts = df_l["analysis_area"].value_counts()
+        all_valid = all(120 <= count <= 130 for count in area_counts)
+        print(f"    - Vùng phân tích (120-130 listing/vùng): {'ĐẠT' if all_valid else 'SAI'}")
+        if not all_valid:
+            print(f"      Chi tiết lỗi phân bổ: {area_counts.to_dict()}")
+
+    # 4.4 Kiểm tra thiếu giá (price) ở mốc cuối cùng
+    if moc == snapshots[-1] and "price" in df_l.columns:
+        thieu_gia = df_l["price"].isna().sum()
+        print(f"    - Số listing thiếu price: {thieu_gia} (Kỳ vọng: 20) -> {'ĐẠT' if thieu_gia == 20 else 'SAI'}")
+    # =====================================================================
 
     # --- B. BẢNG CALENDAR ---
     first = True

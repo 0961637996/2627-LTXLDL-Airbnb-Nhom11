@@ -1,13 +1,53 @@
-snapshot,table,rule,total_rows,affected_rows,action
-2025-09-14,listings,filter_1000_ids,25000,24000,dropped_unassigned
-2025-09-14,calendar,filter_1000_ids,9125007,8760007,dropped_unassigned
-2025-09-14,reviews,filter_5000_ids,1275992,1270992,dropped_unassigned
-2025-12-14,listings,filter_1000_ids,24616,23616,dropped_unassigned
-2025-12-14,calendar,filter_1000_ids,8984873,8619873,dropped_unassigned
-2025-12-14,reviews,filter_5000_ids,1328344,1323344,dropped_unassigned
-2026-03-24,listings,filter_1000_ids,23002,22002,dropped_unassigned
-2026-03-24,calendar,filter_1000_ids,8395763,8030763,dropped_unassigned
-2026-03-24,reviews,filter_5000_ids,1329098,1324098,dropped_unassigned
-2026-06-20,listings,filter_1000_ids,22708,21708,dropped_unassigned
-2026-06-20,calendar,filter_1000_ids,8334782,7969782,dropped_unassigned
-2026-06-20,reviews,filter_5000_ids,1419360,1414360,dropped_unassigned
+snapshot,table,rule_name,total_rows,affected_rows,action
+2025-09-14,listings,type_cast_price,1000,915, Bỏ dấu $ ở cột giá 
+2025-09-14,listings,invalid_price,1000,85, Gắn cờ các cột không có giá và có giá âm 
+2025-09-14,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
+2025-09-14,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
+2025-09-14,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
+2025-09-14,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
+2025-09-14,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
+2025-09-14,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
+2025-09-14,calendar,invalid_price,365000,365000, Gắn cờ các cột không có giá và có giá âm 
+2025-09-14,reviews,clean_html,1431,293,Làm sạch comment
+2025-09-14,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
+2025-09-14,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
+2025-09-14,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment
+2025-12-14,listings,type_cast_price,1000,0, Bỏ dấu $ ở cột giá 
+2025-12-14,listings,invalid_price,1000,1000, Gắn cờ các cột không có giá và có giá âm 
+2025-12-14,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
+2025-12-14,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
+2025-12-14,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
+2025-12-14,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
+2025-12-14,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
+2025-12-14,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
+2025-12-14,calendar,invalid_price,365000,0, Gắn cờ các cột không có giá và có giá âm 
+2025-12-14,reviews,clean_html,1431,293,Làm sạch comment
+2025-12-14,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
+2025-12-14,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
+2025-12-14,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment
+2026-03-24,listings,type_cast_price,1000,933, Bỏ dấu $ ở cột giá 
+2026-03-24,listings,invalid_price,1000,67, Gắn cờ các cột không có giá và có giá âm 
+2026-03-24,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
+2026-03-24,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
+2026-03-24,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
+2026-03-24,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
+2026-03-24,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
+2026-03-24,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
+2026-03-24,calendar,invalid_price,365000,0, Gắn cờ các cột không có giá và có giá âm 
+2026-03-24,reviews,clean_html,1431,293,Làm sạch comment
+2026-03-24,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
+2026-03-24,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
+2026-03-24,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment
+2026-06-20,listings,type_cast_price,1000,980, Bỏ dấu $ ở cột giá 
+2026-06-20,listings,invalid_price,1000,20, Gắn cờ các cột không có giá và có giá âm 
+2026-06-20,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
+2026-06-20,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
+2026-06-20,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
+2026-06-20,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
+2026-06-20,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
+2026-06-20,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
+2026-06-20,calendar,invalid_price,365000,0, Gắn cờ các cột không có giá và có giá âm 
+2026-06-20,reviews,clean_html,1431,293,Làm sạch comment
+2026-06-20,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
+2026-06-20,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
+2026-06-20,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment

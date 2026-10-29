@@ -34,12 +34,18 @@ for moc in snapshots:
     # Ghép bảng để lọc ID và lấy thêm cột analysis_area từ file phân công
     df_l = df_l.merge(df_list_assign, on="id", how="inner")
     
+    # =====================================================================
+    # THÊM MỚI: LÀM SẠCH GIÁ TIỀN (LISTINGS) TRƯỚC KHI LƯU
+    # =====================================================================
+    if "price" in df_l.columns:
+        df_l["price"] = df_l["price"].replace(r"[\$,]", "", regex=True).astype(float)
+    
     # QA Log cho Listings (Chỉ log việc lọc)
     log_qa(moc, "listings", "filter_1000_ids", n_raw_l, n_raw_l - len(df_l), "dropped_unassigned")
     df_l.to_csv(f"data/processed/{moc}_listings.csv", index=False)
 
     # =====================================================================
-    # THÊM MỚI: TỰ KIỂM TRA SAU KHI LỌC BẢNG LISTINGS (YÊU CẦU 4)
+    # TỰ KIỂM TRA SAU KHI LỌC BẢNG LISTINGS (YÊU CẦU 4)
     # =====================================================================
     print(f"  [Tự kiểm tra QA] Mốc {moc}:")
     
@@ -81,6 +87,14 @@ for moc in snapshots:
         chunk = chunk[chunk["listing_id"].isin(list_ids)]
         n_filtered_cal += len(chunk)
         
+        # =====================================================================
+        # THÊM MỚI: LÀM SẠCH AVAILABLE VÀ PRICE (CALENDAR) TRƯỚC KHI LƯU
+        # =====================================================================
+        if "available" in chunk.columns:
+            chunk["available"] = chunk["available"].map({'t': 1, 'f': 0, 'True': 1, 'False': 0, True: 1, False: 0})
+        if "price" in chunk.columns:
+            chunk["price"] = chunk["price"].replace(r"[\$,]", "", regex=True).astype(float)
+
         if not chunk.empty:
             chunk.to_csv(f"data/processed/{moc}_calendar.csv", mode="w" if first else "a", header=first, index=False)
             first = False
@@ -99,6 +113,12 @@ for moc in snapshots:
         chunk = chunk.merge(df_rev_assign, on="id", how="inner")
         n_filtered_rev += len(chunk)
         
+        # =====================================================================
+        # THÊM MỚI: XÓA THẺ HTML TRONG BÌNH LUẬN (REVIEWS) TRƯỚC KHI LƯU
+        # =====================================================================
+        if "comments" in chunk.columns:
+            chunk["comments"] = chunk["comments"].replace(r"<[^>]+>", " ", regex=True)
+            
         if not chunk.empty:
             chunk.to_csv(f"data/processed/{moc}_reviews.csv", mode="w" if first else "a", header=first, index=False)
             if moc == snapshots[0]: 
@@ -117,4 +137,4 @@ for moc in snapshots:
 
 # 4. XUẤT BÁO CÁO QA LỌC DỮ LIỆU
 pd.DataFrame(QA_LOG).to_csv("reports/qa_report.csv", index=False)
-print("\nHoàn tất việc lọc! Đã lưu báo cáo tại reports/qa_report.csv")
+print("\nHoàn tất việc lọc và làm sạch! Đã lưu báo cáo tại reports/qa_report.csv")

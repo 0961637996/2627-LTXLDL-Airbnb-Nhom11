@@ -253,7 +253,7 @@ for moc in danh_sach_moc:
                condition="trùng id review trong cùng mốc", reason="tránh đếm đôi đánh giá")
 
         # Tách mẫu LLM (1000 dòng) và mẫu nhãn tay (100 dòng) ở mốc đầu, bảo toàn nhãn đã gán tay
-        if moc == danh_sach_moc[0] and {"mau_llm", "nhan_tay"} <= set(df_r.columns):
+        if moc == danh_sach_moc[-1] and {"mau_llm", "nhan_tay"} <= set(df_r.columns):
             hand_path = "data/samples/hand_labeled_reviews.csv"
             old_labels = {}
             if os.path.exists(hand_path):

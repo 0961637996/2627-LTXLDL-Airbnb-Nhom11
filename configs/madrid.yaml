@@ -7,7 +7,7 @@ snapshots: [2025-09-14, 2025-12-14, 2026-03-24, 2026-06-20]
 # Các tham số dùng cho bước làm sạch (qa.py)
 qa:
   min_price: 0           # Mức giá tối thiểu hợp lệ (loại bỏ giá <= 0)
-  max_price: 5000       # Mức giá tối đa (loại bỏ dữ liệu rác/giá ảo)
+  max_price: 805       # Mức giá tối đa (loại bỏ dữ liệu rác/giá ảo)
   valid_areas:          # Các vùng hợp lệ
     - "A01"
     - "A02"
@@ -23,8 +23,13 @@ qa:
     - "Shared room"
     - "Hotel room"
 
+kpi:
+  area_col: "neighbourhood_cleansed"  
+  multi_listing_min: 2
+
 # Các tham số dùng cho bước đánh giá LLM (llm.py, evaluate.py)
 llm:
   model_name: "gemini-1.5-flash"
   temperature: 0.1
   max_retries: 3
+  cache: "data/processed/llm_cache.jsonl"

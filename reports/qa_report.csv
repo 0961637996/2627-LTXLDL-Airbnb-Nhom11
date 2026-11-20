@@ -1,53 +1,78 @@
-snapshot,table,rule_name,total_rows,affected_rows,action
-2025-09-14,listings,type_cast_price,1000,915, Bỏ dấu $ ở cột giá 
-2025-09-14,listings,invalid_price,1000,85, Gắn cờ các cột không có giá và có giá âm 
-2025-09-14,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
-2025-09-14,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
-2025-09-14,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
-2025-09-14,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
-2025-09-14,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
-2025-09-14,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
-2025-09-14,calendar,invalid_price,365000,365000, Gắn cờ các cột không có giá và có giá âm 
-2025-09-14,reviews,clean_html,1431,293,Làm sạch comment
-2025-09-14,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
-2025-09-14,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
-2025-09-14,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment
-2025-12-14,listings,type_cast_price,1000,0, Bỏ dấu $ ở cột giá 
-2025-12-14,listings,invalid_price,1000,1000, Gắn cờ các cột không có giá và có giá âm 
-2025-12-14,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
-2025-12-14,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
-2025-12-14,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
-2025-12-14,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
-2025-12-14,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
-2025-12-14,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
-2025-12-14,calendar,invalid_price,365000,0, Gắn cờ các cột không có giá và có giá âm 
-2025-12-14,reviews,clean_html,1431,293,Làm sạch comment
-2025-12-14,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
-2025-12-14,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
-2025-12-14,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment
-2026-03-24,listings,type_cast_price,1000,933, Bỏ dấu $ ở cột giá 
-2026-03-24,listings,invalid_price,1000,67, Gắn cờ các cột không có giá và có giá âm 
-2026-03-24,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
-2026-03-24,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
-2026-03-24,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
-2026-03-24,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
-2026-03-24,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
-2026-03-24,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
-2026-03-24,calendar,invalid_price,365000,0, Gắn cờ các cột không có giá và có giá âm 
-2026-03-24,reviews,clean_html,1431,293,Làm sạch comment
-2026-03-24,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
-2026-03-24,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
-2026-03-24,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment
-2026-06-20,listings,type_cast_price,1000,980, Bỏ dấu $ ở cột giá 
-2026-06-20,listings,invalid_price,1000,20, Gắn cờ các cột không có giá và có giá âm 
-2026-06-20,listings,outlier_price,1000,0, Gắn cờ các giá ngoại lai 
-2026-06-20,listings,invalid_area,1000,0, Gắn cờ các vùng không hợp lệ 
-2026-06-20,listings,invalid_room_type,1000,0, Gắn cờ các loại phòng không hợp lệ 
-2026-06-20,listings,duplicate_id_in_snap,1000,0,Gắn cờ những id bị lặp
-2026-06-20,calendar,change,365000,365000," Chuyển ký tự t , f thành số 0 , 1 "
-2026-06-20,calendar,type_cast_price,365000,0, Bỏ dấu $ ở cột giá 
-2026-06-20,calendar,invalid_price,365000,0, Gắn cờ các cột không có giá và có giá âm 
-2026-06-20,reviews,clean_html,1431,293,Làm sạch comment
-2026-06-20,reviews,missing_or_empty_comment,1431,0,Xử lý comment bị thiếu hoặc khoảng trắng
-2026-06-20,reviews,duplicate_id,1431,0,Xử lý trùng lặp id
-2026-06-20,reviews,duplicate_comment,1431,0,Xử lý trùng lặp comment
+snapshot,table,rule_name,condition,reason,total_rows,affected_rows,pct_affected,action,kpi_name,kpi_before,kpi_after,note
+2025-09-14,listings,type_cast_price,"price chứa $ hoặc ,",chuỗi không tính toán được,1000,915,91.5,"Xóa ký tự $ , và ép sang float",,,,
+2025-09-14,listings,price_unparseable,price khác rỗng nhưng không ép được sang số,định dạng lỗi,1000,0,0.0,Đặt NaN,,,,
+2025-09-14,listings,missing_price,price rỗng (NaN),"không tính được KPI giá, giữ dòng cho KPI khác",1000,85,8.5,Gắn cờ flag_invalid_price,,,,
+2025-09-14,listings,invalid_price,price < 0,giá <= 0 là vô lý,1000,0,0.0,Đặt NaN và gắn cờ flag_invalid_price,median_price,122.0,122.0,
+2025-09-14,listings,outlier_price,price > 805,"ngoại lai làm lệch phân phối giá; loại khỏi K1, K3",1000,8,0.8,Gắn cờ flag_outlier_price,median_price,122.0,121.0,
+2025-09-14,listings,invalid_area,"analysis_area ngoài ['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08']",sai lệch khi gom nhóm theo vùng,1000,0,0.0,Gắn cờ flag_invalid_area,,,,
+2025-09-14,listings,invalid_room_type,"room_type ngoài ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']",sai lệch khi tính K5 (entire home),1000,0,0.0,Gắn cờ flag_invalid_room_type,,,,
+2025-09-14,listings,duplicate_id_in_snap,trùng id trong cùng mốc,tránh đếm đôi listing,1000,0,0.0,Gắn cờ flag_dup_id,,,,
+2025-09-14,listings,area_balance,"số listing mỗi vùng ngoài [120, 130]",kiểm tra cân bằng mẫu phân công,8,0,0.0,Chỉ báo cáo,,,,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}"
+2025-09-14,calendar,type_cast_available,available là chuỗi t/f,cần kiểu số để tính K2 (occupancy),365000,365000,100.0,Chuyển t/f sang 1/0,,,,
+2025-09-14,calendar,invalid_available,available khác t/f/true/false,giá trị ngoài miền hợp lệ,365000,0,0.0,Đặt NaN,,,,
+2025-09-14,calendar,invalid_date,date không đọc được định dạng ngày,ảnh hưởng khi lọc cửa sổ occupancy_days,365000,0,0.0,Gắn cờ flag_bad_date,availability_rate,0.558,0.558,
+2025-09-14,calendar,duplicate_listing_date,"trùng cặp (listing_id, date)",đếm đôi số ngày trống/kín,365000,0,0.0,Chỉ báo cáo,,,,
+2025-09-14,reviews,clean_html,comments chứa thẻ <...>,giảm nhiễu văn bản cho bước LLM,1431,293,20.48,Xóa thẻ HTML và chuẩn hóa khoảng trắng,mean_comment_chars,274.7212,272.1544,
+2025-09-14,reviews,empty_comment,comments rỗng hoặc chỉ có khoảng trắng,không có nội dung phân tích cảm xúc,1431,0,0.0,Gắn cờ flag_empty_comment,,,,
+2025-09-14,reviews,automated_comment,khớp mẫu thông báo hủy phòng tự động,không phải nhận xét của khách,1431,0,0.0,Gắn cờ flag_automated_comment,mean_comment_chars,272.1544,272.1544,
+2025-09-14,reviews,duplicate_id_in_snap,trùng id review trong cùng mốc,tránh đếm đôi đánh giá,1431,0,0.0,Gắn cờ flag_dup_id,,,,
+2025-12-14,listings,type_cast_price,"price chứa $ hoặc ,",chuỗi không tính toán được,1000,0,0.0,"Xóa ký tự $ , và ép sang float",,,,
+2025-12-14,listings,price_unparseable,price khác rỗng nhưng không ép được sang số,định dạng lỗi,1000,0,0.0,Đặt NaN,,,,
+2025-12-14,listings,missing_price,price rỗng (NaN),"không tính được KPI giá, giữ dòng cho KPI khác",1000,1000,100.0,Gắn cờ flag_invalid_price,,,,MỐC NÀY THIẾU >= 50% GIÁ
+2025-12-14,listings,invalid_price,price < 0,giá <= 0 là vô lý,1000,0,0.0,Đặt NaN và gắn cờ flag_invalid_price,median_price,,,
+2025-12-14,listings,outlier_price,price > 805,"ngoại lai làm lệch phân phối giá; loại khỏi K1, K3",1000,0,0.0,Gắn cờ flag_outlier_price,median_price,,,
+2025-12-14,listings,invalid_area,"analysis_area ngoài ['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08']",sai lệch khi gom nhóm theo vùng,1000,0,0.0,Gắn cờ flag_invalid_area,,,,
+2025-12-14,listings,invalid_room_type,"room_type ngoài ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']",sai lệch khi tính K5 (entire home),1000,0,0.0,Gắn cờ flag_invalid_room_type,,,,
+2025-12-14,listings,duplicate_id_in_snap,trùng id trong cùng mốc,tránh đếm đôi listing,1000,0,0.0,Gắn cờ flag_dup_id,,,,
+2025-12-14,listings,area_balance,"số listing mỗi vùng ngoài [120, 130]",kiểm tra cân bằng mẫu phân công,8,0,0.0,Chỉ báo cáo,,,,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}"
+2025-12-14,calendar,type_cast_available,available là chuỗi t/f,cần kiểu số để tính K2 (occupancy),365000,365000,100.0,Chuyển t/f sang 1/0,,,,
+2025-12-14,calendar,invalid_available,available khác t/f/true/false,giá trị ngoài miền hợp lệ,365000,0,0.0,Đặt NaN,,,,
+2025-12-14,calendar,invalid_date,date không đọc được định dạng ngày,ảnh hưởng khi lọc cửa sổ occupancy_days,365000,0,0.0,Gắn cờ flag_bad_date,availability_rate,0.5778,0.5778,
+2025-12-14,calendar,duplicate_listing_date,"trùng cặp (listing_id, date)",đếm đôi số ngày trống/kín,365000,0,0.0,Chỉ báo cáo,,,,
+2025-12-14,reviews,clean_html,comments chứa thẻ <...>,giảm nhiễu văn bản cho bước LLM,1431,293,20.48,Xóa thẻ HTML và chuẩn hóa khoảng trắng,mean_comment_chars,274.7212,272.1544,
+2025-12-14,reviews,empty_comment,comments rỗng hoặc chỉ có khoảng trắng,không có nội dung phân tích cảm xúc,1431,0,0.0,Gắn cờ flag_empty_comment,,,,
+2025-12-14,reviews,automated_comment,khớp mẫu thông báo hủy phòng tự động,không phải nhận xét của khách,1431,0,0.0,Gắn cờ flag_automated_comment,mean_comment_chars,272.1544,272.1544,
+2025-12-14,reviews,duplicate_id_in_snap,trùng id review trong cùng mốc,tránh đếm đôi đánh giá,1431,0,0.0,Gắn cờ flag_dup_id,,,,
+2026-03-24,listings,type_cast_price,"price chứa $ hoặc ,",chuỗi không tính toán được,1000,933,93.3,"Xóa ký tự $ , và ép sang float",,,,
+2026-03-24,listings,price_unparseable,price khác rỗng nhưng không ép được sang số,định dạng lỗi,1000,0,0.0,Đặt NaN,,,,
+2026-03-24,listings,missing_price,price rỗng (NaN),"không tính được KPI giá, giữ dòng cho KPI khác",1000,67,6.7,Gắn cờ flag_invalid_price,,,,
+2026-03-24,listings,invalid_price,price < 0,giá <= 0 là vô lý,1000,0,0.0,Đặt NaN và gắn cờ flag_invalid_price,median_price,148.35,148.35,
+2026-03-24,listings,outlier_price,price > 805,"ngoại lai làm lệch phân phối giá; loại khỏi K1, K3",1000,14,1.4,Gắn cờ flag_outlier_price,median_price,148.35,147.0,
+2026-03-24,listings,invalid_area,"analysis_area ngoài ['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08']",sai lệch khi gom nhóm theo vùng,1000,0,0.0,Gắn cờ flag_invalid_area,,,,
+2026-03-24,listings,invalid_room_type,"room_type ngoài ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']",sai lệch khi tính K5 (entire home),1000,0,0.0,Gắn cờ flag_invalid_room_type,,,,
+2026-03-24,listings,duplicate_id_in_snap,trùng id trong cùng mốc,tránh đếm đôi listing,1000,0,0.0,Gắn cờ flag_dup_id,,,,
+2026-03-24,listings,area_balance,"số listing mỗi vùng ngoài [120, 130]",kiểm tra cân bằng mẫu phân công,8,0,0.0,Chỉ báo cáo,,,,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}"
+2026-03-24,calendar,type_cast_available,available là chuỗi t/f,cần kiểu số để tính K2 (occupancy),365000,365000,100.0,Chuyển t/f sang 1/0,,,,
+2026-03-24,calendar,invalid_available,available khác t/f/true/false,giá trị ngoài miền hợp lệ,365000,0,0.0,Đặt NaN,,,,
+2026-03-24,calendar,invalid_date,date không đọc được định dạng ngày,ảnh hưởng khi lọc cửa sổ occupancy_days,365000,0,0.0,Gắn cờ flag_bad_date,availability_rate,0.5474,0.5474,
+2026-03-24,calendar,duplicate_listing_date,"trùng cặp (listing_id, date)",đếm đôi số ngày trống/kín,365000,0,0.0,Chỉ báo cáo,,,,
+2026-03-24,reviews,clean_html,comments chứa thẻ <...>,giảm nhiễu văn bản cho bước LLM,1431,293,20.48,Xóa thẻ HTML và chuẩn hóa khoảng trắng,mean_comment_chars,274.7212,272.1544,
+2026-03-24,reviews,empty_comment,comments rỗng hoặc chỉ có khoảng trắng,không có nội dung phân tích cảm xúc,1431,0,0.0,Gắn cờ flag_empty_comment,,,,
+2026-03-24,reviews,automated_comment,khớp mẫu thông báo hủy phòng tự động,không phải nhận xét của khách,1431,0,0.0,Gắn cờ flag_automated_comment,mean_comment_chars,272.1544,272.1544,
+2026-03-24,reviews,duplicate_id_in_snap,trùng id review trong cùng mốc,tránh đếm đôi đánh giá,1431,0,0.0,Gắn cờ flag_dup_id,,,,
+2026-06-20,listings,type_cast_price,"price chứa $ hoặc ,",chuỗi không tính toán được,1000,980,98.0,"Xóa ký tự $ , và ép sang float",,,,
+2026-06-20,listings,price_unparseable,price khác rỗng nhưng không ép được sang số,định dạng lỗi,1000,0,0.0,Đặt NaN,,,,
+2026-06-20,listings,missing_price,price rỗng (NaN),"không tính được KPI giá, giữ dòng cho KPI khác",1000,20,2.0,Gắn cờ flag_invalid_price,,,,
+2026-06-20,listings,invalid_price,price < 0,giá <= 0 là vô lý,1000,0,0.0,Đặt NaN và gắn cờ flag_invalid_price,median_price,140.0,140.0,
+2026-06-20,listings,outlier_price,price > 805,"ngoại lai làm lệch phân phối giá; loại khỏi K1, K3",1000,10,1.0,Gắn cờ flag_outlier_price,median_price,140.0,139.0,
+2026-06-20,listings,invalid_area,"analysis_area ngoài ['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08']",sai lệch khi gom nhóm theo vùng,1000,0,0.0,Gắn cờ flag_invalid_area,,,,
+2026-06-20,listings,invalid_room_type,"room_type ngoài ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']",sai lệch khi tính K5 (entire home),1000,0,0.0,Gắn cờ flag_invalid_room_type,,,,
+2026-06-20,listings,duplicate_id_in_snap,trùng id trong cùng mốc,tránh đếm đôi listing,1000,0,0.0,Gắn cờ flag_dup_id,,,,
+2026-06-20,listings,area_balance,"số listing mỗi vùng ngoài [120, 130]",kiểm tra cân bằng mẫu phân công,8,0,0.0,Chỉ báo cáo,,,,"{'A02': 129, 'A07': 128, 'A04': 127, 'A01': 127, 'A06': 124, 'A05': 123, 'A03': 122, 'A08': 120}"
+2026-06-20,calendar,type_cast_available,available là chuỗi t/f,cần kiểu số để tính K2 (occupancy),365000,365000,100.0,Chuyển t/f sang 1/0,,,,
+2026-06-20,calendar,invalid_available,available khác t/f/true/false,giá trị ngoài miền hợp lệ,365000,0,0.0,Đặt NaN,,,,
+2026-06-20,calendar,invalid_date,date không đọc được định dạng ngày,ảnh hưởng khi lọc cửa sổ occupancy_days,365000,0,0.0,Gắn cờ flag_bad_date,availability_rate,0.58,0.58,
+2026-06-20,calendar,duplicate_listing_date,"trùng cặp (listing_id, date)",đếm đôi số ngày trống/kín,365000,0,0.0,Chỉ báo cáo,,,,
+2026-06-20,reviews,clean_html,comments chứa thẻ <...>,giảm nhiễu văn bản cho bước LLM,1431,293,20.48,Xóa thẻ HTML và chuẩn hóa khoảng trắng,mean_comment_chars,274.7212,272.1544,
+2026-06-20,reviews,empty_comment,comments rỗng hoặc chỉ có khoảng trắng,không có nội dung phân tích cảm xúc,1431,0,0.0,Gắn cờ flag_empty_comment,,,,
+2026-06-20,reviews,automated_comment,khớp mẫu thông báo hủy phòng tự động,không phải nhận xét của khách,1431,0,0.0,Gắn cờ flag_automated_comment,mean_comment_chars,272.1544,272.1544,
+2026-06-20,reviews,duplicate_id_in_snap,trùng id review trong cùng mốc,tránh đếm đôi đánh giá,1431,0,0.0,Gắn cờ flag_dup_id,,,,
+2025-12-14,listings,gone_since_prev,id có ở mốc trước nhưng biến mất ở mốc này,theo dõi biến động nguồn cung giữa các mốc,1000,0,0.0,Chỉ báo cáo,,,,
+2025-12-14,listings,stale_record_repeated,trùng cả id và last_scraped với mốc trước,bản ghi cũ lặp lại giữa các mốc,1000,0,0.0,Chỉ báo cáo,,,,
+2025-12-14,reviews,repeated_from_prev,review_id đã xuất hiện ở mốc trước,tránh cộng dồn trùng review giữa các mốc,1431,1431,100.0,Chỉ báo cáo,,,,tập review lặp lại 100% từ mốc trước
+2026-03-24,listings,gone_since_prev,id có ở mốc trước nhưng biến mất ở mốc này,theo dõi biến động nguồn cung giữa các mốc,1000,0,0.0,Chỉ báo cáo,,,,
+2026-03-24,listings,stale_record_repeated,trùng cả id và last_scraped với mốc trước,bản ghi cũ lặp lại giữa các mốc,1000,0,0.0,Chỉ báo cáo,,,,
+2026-03-24,reviews,repeated_from_prev,review_id đã xuất hiện ở mốc trước,tránh cộng dồn trùng review giữa các mốc,1431,1431,100.0,Chỉ báo cáo,,,,tập review lặp lại 100% từ mốc trước
+2026-06-20,listings,gone_since_prev,id có ở mốc trước nhưng biến mất ở mốc này,theo dõi biến động nguồn cung giữa các mốc,1000,0,0.0,Chỉ báo cáo,,,,
+2026-06-20,listings,stale_record_repeated,trùng cả id và last_scraped với mốc trước,bản ghi cũ lặp lại giữa các mốc,1000,0,0.0,Chỉ báo cáo,,,,
+2026-06-20,reviews,repeated_from_prev,review_id đã xuất hiện ở mốc trước,tránh cộng dồn trùng review giữa các mốc,1431,1431,100.0,Chỉ báo cáo,,,,tập review lặp lại 100% từ mốc trước

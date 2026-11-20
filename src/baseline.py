@@ -153,10 +153,10 @@ def main():
         rows.append({
             "review_id": row["review_id"],
             "listing_id": row.get("listing_id", ""),
-            "sentiment": sent,
-            "aspects_positive": json.dumps(pos_list, ensure_ascii=False),
-            "aspects_negative": json.dumps(neg_list, ensure_ascii=False),
-            "language": lang,
+            "base_sentiment": sent,
+            "base_aspects_positive": json.dumps(pos_list, ensure_ascii=False),
+            "base_aspects_negative": json.dumps(neg_list, ensure_ascii=False),
+            "base_language": lang,
         })
 
     out_df = pd.DataFrame(rows)

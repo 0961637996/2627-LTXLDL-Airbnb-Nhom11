@@ -1,5 +1,3 @@
-import argparse
-import json
 import os
 import re
 import pandas as pd
@@ -144,27 +142,30 @@ OUTPUT_PATH = "data/processed/baseline_results.csv"
 
 
 def main():
-    df = pd.read_csv(INPUT_PATH, dtype=str)
+    df = pd.read_csv(INPUT_PATH, dtype=str, encoding="utf-8-sig")
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+
+    # Tự nhận tên cột id hoặc review_id cho đỡ lỗi
+    id_col = "id" if "id" in df.columns else "review_id"
 
     rows = []
     for _, row in df.iterrows():
         sent, pos_list, neg_list, lang = analyze_review(row.get("comments", ""))
         rows.append({
-            "review_id": row["review_id"],
+            "id": row[id_col],
             "listing_id": row.get("listing_id", ""),
             "base_sentiment": sent,
-            "base_aspects_positive": json.dumps(pos_list, ensure_ascii=False),
-            "base_aspects_negative": json.dumps(neg_list, ensure_ascii=False),
+            "base_aspects_positive": ", ".join(pos_list),
+            "base_aspects_negative": ", ".join(neg_list),
             "base_language": lang,
         })
 
     out_df = pd.DataFrame(rows)
-    out_df.to_csv(OUTPUT_PATH, index=False)
+    out_df.to_csv(OUTPUT_PATH, index=False, encoding="utf-8-sig")
 
     print(f"[baseline] Đã xử lý {len(out_df)} dòng -> {OUTPUT_PATH}")
-    print("\nPhân bố sentiment:\n", out_df["sentiment"].value_counts().to_string())
-    print("\nPhân bố language:\n", out_df["language"].value_counts().to_string())
+    print("\nPhân bố sentiment:\n", out_df["base_sentiment"].value_counts().to_string())
+    print("\nPhân bố language:\n", out_df["base_language"].value_counts().to_string())
 
 
 if __name__ == "__main__":

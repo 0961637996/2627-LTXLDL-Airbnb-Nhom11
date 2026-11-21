@@ -1,14 +1,14 @@
 city: madrid
-data_root: spain/comunidad-de-madrid/madrid  
+data_root: spain/comunidad-de-madrid/madrid
 currency: EUR
 snapshots: [2025-09-14, 2026-03-24, 2026-06-20, 2026-09-17]
 
-
-# Các tham số dùng cho bước làm sạch (qa.py)
+# Dùng cho qa.py
 qa:
-  min_price: 0           # Mức giá tối thiểu hợp lệ (loại bỏ giá <= 0)
-  max_price: 805       # Mức giá tối đa (loại bỏ dữ liệu rác/giá ảo)
-  valid_areas:          # Các vùng hợp lệ
+  min_price: 1
+  max_price: 805
+  expected_area_range: [120, 130]
+  valid_areas:
     - "A01"
     - "A02"
     - "A03"
@@ -17,20 +17,34 @@ qa:
     - "A06"
     - "A07"
     - "A08"
-  valid_room_types:     # Các loại phòng hợp lệ
+  valid_room_types:
     - "Entire home/apt"
     - "Private room"
     - "Shared room"
     - "Hotel room"
+  automated_patterns:
+    - "this is an automated posting"
+    - "the host canceled this reservation"
+    - "the reservation was canceled"
 
+# Dùng cho kpi.py (và một phần cho viz.py)
 kpi:
-  area_col: "neighbourhood_cleansed"  
-  multi_listing_min: 2
+  area_cols:
+    - "analysis_area"
+    - "neighbourhood_cleansed"
+  area_col: "neighbourhood_cleansed"   # phải khớp tên trong geojson để vẽ bản đồ
+  min_n: 30
+  host_threshold: 5
+  commercial_nights: 183
+  # Chỉ tính K2/K3 trên 90 ngày đầu sau mỗi mốc để các mốc so sánh công bằng
+  # (365 ngày làm các đêm xa, chưa ai đặt, kéo tỷ lệ xuống và khó so sánh).
+  occupancy_days: 90
+  # Bật K8 (số đăng ký). Madrid có chế độ đăng ký nên cột license có ý nghĩa.
   use_license: true
 
-# Các tham số dùng cho bước đánh giá LLM (llm.py, evaluate.py)
-llm:
-  model_name: "gemini-1.5-flash"
-  temperature: 0.1
-  max_retries: 3
-  cache: "data/processed/llm_cache.jsonl"
+# Dùng cho viz.py
+viz:
+  dpi: 200
+  top_n: 12
+  min_coverage: 0.5
+  k6_threshold: null   # đặt số (vd 15) nếu muốn vẽ vạch ngưỡng cảnh báo K6

@@ -52,14 +52,14 @@ def to_number(s):
 
 # ============================================================ ĐỌC FILE PHÂN CÔNG
 df_listing = (
-    pd.read_csv("data/raw/phan_cong_1000_listing.csv", dtype=str)
+    pd.read_csv("configs/phan_cong_1000_listing.csv", dtype=str)
     .rename(columns={"listing_id": "id"})
     .drop_duplicates("id")
 )
 list_ids = set(df_listing["id"].dropna())
 
 df_review = (
-    pd.read_csv("data/raw/phan_cong_5000_review.csv", dtype=str)
+    pd.read_csv("configs/phan_cong_5000_review.csv", dtype=str)
     .rename(columns={"review_id": "id"})
     .drop_duplicates("id")
 )
@@ -253,28 +253,23 @@ for moc in danh_sach_moc:
                condition="trùng id review trong cùng mốc", reason="tránh đếm đôi đánh giá")
 
         # Tách mẫu LLM (1000 dòng) và mẫu nhãn tay (100 dòng) ở mốc đầu, bảo toàn nhãn đã gán tay
-        if moc == danh_sach_moc[-1] and {"mau_llm", "nhan_tay"} <= set(df_r.columns):
-            hand_path = "data/samples/hand_labeled_reviews.csv"
-            old_labels = {}
-            if os.path.exists(hand_path):
-                old = pd.read_csv(hand_path, dtype=str)
-                if {"review_id", "nhan"} <= set(old.columns):
-                    old_labels = dict(old.dropna(subset=["nhan"])[["review_id", "nhan"]].values)
-
-            llm_sample = df_r[df_r["mau_llm"].fillna("").str.lower() == "x"]
-            hand_sample = df_r[df_r["nhan_tay"].fillna("").str.lower() == "x"]
-            if old_labels:
-                kept = df_r[df_r["id"].isin(old_labels)]
-                llm_sample = pd.concat([llm_sample, kept]).drop_duplicates("id")
-                hand_sample = pd.concat([hand_sample, kept]).drop_duplicates("id")
-
+        # Tách mẫu LLM (1000 dòng) và mẫu nhãn tay (100 dòng) ở mốc đầu
+        if moc == danh_sach_moc[0] and {"mau_llm", "nhan_tay"} <= set(df_r.columns):
             cols = [c for c in ("id", "listing_id", "date", "comments") if c in df_r.columns]
-            llm_sample[cols].rename(columns={"id": "review_id"}).to_csv("data/samples/llm_reviews.csv", index=False)
 
-            hand_out = hand_sample[cols].rename(columns={"id": "review_id"}).copy()
-            hand_out["nhan"] = hand_out["review_id"].map(old_labels)
-            hand_out.to_csv(hand_path, index=False)
-            print(f"  -> Đã tách mẫu LLM: {len(llm_sample)} dòng | Nhãn tay: {len(hand_out)} dòng (đã gán: {hand_out['nhan'].notna().sum()})")
+            llm_sample = df_r[df_r["mau_llm"].fillna("").str.strip().str.lower() == "x"]
+            llm_sample[cols].rename(columns={"id": "review_id"}).to_csv("data/samples/llm_reviews.csv", index=False)
+            print(f"  -> Đã tách mẫu LLM: {len(llm_sample)} dòng")
+
+            hand_path = "data/samples/hand_labeled_reviews.csv"
+            if not os.path.exists(hand_path):
+                hand_sample = df_r[df_r["nhan_tay"].fillna("").str.strip().str.lower() == "x"]
+                hand_out = hand_sample[cols].rename(columns={"id": "review_id"}).copy()
+                hand_out["sentiment"] = ""
+                hand_out.to_csv(hand_path, index=False)
+                print(f"  -> Đã tạo mới mẫu nhãn tay: {len(hand_out)} dòng")
+            else:
+                print(f"  -> Bỏ qua, đã có sẵn file nhãn tay: {hand_path}")
 
 # ============================================================ KIỂM TRA TRÙNG / LỆCH GIỮA CÁC MỐC
 prev_l, seen_reviews = None, set()

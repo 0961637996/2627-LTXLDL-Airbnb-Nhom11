@@ -20,8 +20,7 @@ if not API_KEY:
 INPUT_FILE = "data/samples/llm_reviews.csv"
 OUTPUT_FILE = "data/samples/llm_results.csv"
 MODEL_NAME = "gemini-3.5-flash-lite"
-
-TEST_LIMIT = None   # Đặt = 10 để test thử. Đổi thành None khi chạy hết cả file.
+TEST_LIMIT = 10   # Đặt = 10 để test thử. Đổi thành None khi chạy hết cả file.
 SAVE_EVERY = 20      # Tự động lưu sau mỗi 20 dòng
 SLEEP_SECONDS = 6    # Nghỉ 6s/request để an toàn với giới hạn bản free
 
@@ -120,7 +119,7 @@ Review: "{cleaned}"
 
 
 # ==========================================
-# 3. LUỒNG CHẠY CHÍNH (HỖ TRỢ RESUME)
+# 3. LUỒNG CHẠY CHÍNH 
 # ==========================================
 def main():
     if os.path.exists(OUTPUT_FILE):

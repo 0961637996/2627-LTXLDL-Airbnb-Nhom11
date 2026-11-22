@@ -6,7 +6,7 @@ import pandas as pd
 # ==========================================
 HAND_FILE = "data/samples/hand_labeled_reviews.csv"
 BASE_FILE = "data/processed/baseline_results.csv"   # Chưa có file này code tự bỏ qua
-LLM_FILE  = "data/processed/llm_results.csv"    # Chạy xong 1000 dòng thì đổi tên file ở đây
+LLM_FILE  = "data/processed/llm_results.csv" 
 
 # ==========================================
 # 2. CÁC HÀM CHẤM ĐIỂM

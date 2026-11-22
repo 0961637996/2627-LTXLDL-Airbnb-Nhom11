@@ -8,15 +8,6 @@ HAND_FILE = "data/samples/hand_labeled_reviews.csv"
 BASE_FILE = "data/processed/baseline_results.csv"   # Chưa có file này code tự bỏ qua
 LLM_FILE  = "data/processed/llm_results.csv"    # Chạy xong 1000 dòng thì đổi tên file ở đây
 
-# Nếu file Baseline đặt tên cột kết quả khác thì sửa tên bên trái
-BASE_RENAME = {
-    "sentiment": "base_sentiment",
-    "language": "base_language",
-    "aspects_positive": "base_aspects_positive",
-    "aspects_negative": "base_aspects_negative",
-}
-
-
 # ==========================================
 # 2. CÁC HÀM CHẤM ĐIỂM
 # ==========================================
@@ -68,22 +59,21 @@ def evaluate_one(df, prefix):
 # ==========================================
 valid = ["positive", "negative", "mixed"]
 
-df = pd.read_csv(HAND_FILE, dtype={"id": str}, encoding="utf-8-sig")
+df = pd.read_csv(HAND_FILE, dtype={"review_id": str}, encoding="utf-8-sig")
 df = df[clean(df["sentiment"]).isin(valid)]
 models = {}
 
 if os.path.exists(BASE_FILE):
-    df_base = pd.read_csv(BASE_FILE, dtype={"id": str}, encoding="utf-8-sig")
-    df_base = df_base.rename(columns=BASE_RENAME)
-    cols = ["id"] + [c for c in BASE_RENAME.values() if c in df_base.columns]
-    df = df.merge(df_base[cols], on="id", how="inner")
+    df_base = pd.read_csv(BASE_FILE, dtype={"review_id": str}, encoding="utf-8-sig")
+    cols = ["review_id"] + [c for c in df_base.columns if c.startswith("base_")]
+    df = df.merge(df_base[cols], on="review_id", how="inner")
     models["Baseline"] = "base_"
 
 if os.path.exists(LLM_FILE):
-    df_llm = pd.read_csv(LLM_FILE, dtype={"id": str}, encoding="utf-8-sig")
+    df_llm = pd.read_csv(LLM_FILE, dtype={"review_id": str}, encoding="utf-8-sig")
     df_llm = df_llm[clean(df_llm["llm_sentiment"]).isin(valid)]  # Chỉ lấy các dòng đã chạy xong
-    cols = ["id"] + [c for c in df_llm.columns if c.startswith("llm_")]
-    df = df.merge(df_llm[cols], on="id", how="inner")
+    cols = ["review_id"] + [c for c in df_llm.columns if c.startswith("llm_")]
+    df = df.merge(df_llm[cols], on="review_id", how="inner")
     models["LLM"] = "llm_"
 
 if not models or df.empty:

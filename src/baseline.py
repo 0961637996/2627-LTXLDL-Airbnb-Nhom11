@@ -152,7 +152,7 @@ def main():
     for _, row in df.iterrows():
         sent, pos_list, neg_list, lang = analyze_review(row.get("comments", ""))
         rows.append({
-            "id": row[id_col],
+            "review_id": row[id_col],
             "listing_id": row.get("listing_id", ""),
             "base_sentiment": sent,
             "base_aspects_positive": ", ".join(pos_list),

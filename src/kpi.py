@@ -80,7 +80,7 @@ def parse_aspects(cell):
                 except (ValueError, SyntaxError):
                     items = []
         else:
-            items = text.split(";")
+            items = text.replace(",", ";").split(";")
     return [str(a).strip().lower() for a in items if str(a).strip()]
 
 
@@ -131,12 +131,12 @@ def load_llm_reviews(last_listings, area_cols):
         print("[kpi] chưa có llm_results.csv, bỏ qua K6, K7 (chạy llm.py trước)")
         return None
     llm = pd.read_csv(path, dtype={"review_id": str, "listing_id": str})
-    missing = {"listing_id", "sentiment", "aspects_negative"} - set(llm.columns)
+    missing = {"listing_id", "llm_sentiment", "llm_aspects_negative"} - set(llm.columns)
     if missing:
         print(f"[kpi] llm_results.csv thiếu cột {sorted(missing)}, bỏ qua K6, K7")
         return None
-    llm["sentiment"] = llm["sentiment"].astype(str).str.strip().str.lower()
-    llm = llm[llm["sentiment"].isin(["positive", "mixed", "negative"])]  # bỏ dòng LLM trả sai định dạng
+    llm["llm_sentiment"] = llm["llm_sentiment"].astype(str).str.strip().str.lower()
+    llm = llm[llm["llm_sentiment"].isin(["positive", "mixed", "negative"])]  # bỏ dòng LLM trả sai định dạng
     cols = [c for c in area_cols if c in last_listings.columns]
     return llm.join(last_listings.set_index("id")[cols], on="listing_id")
 
@@ -215,7 +215,7 @@ def f_entire_home_thuong_mai(d, nguong=183):
 
 def f_negative(d):
     """K6. Tỷ lệ review tiêu cực (LLM). Đơn vị: %. `d` là bảng review đã gắn khu vực."""
-    return d["sentiment"].eq("negative").mean() * 100, len(d)
+    return d["llm_sentiment"].eq("negative").mean() * 100, len(d)
 
 
 def f_top_complaint(d):
@@ -224,7 +224,7 @@ def f_top_complaint(d):
     value = % review nhắc tới khía cạnh đứng đầu trong aspects_negative; text = tên khía cạnh đó.
     """
     counts = {}
-    for cell in d["aspects_negative"]:
+    for cell in d["llm_aspects_negative"]:
         for aspect in set(parse_aspects(cell)):  # set: một review chỉ tính một lần cho mỗi khía cạnh
             counts[aspect] = counts.get(aspect, 0) + 1
     if not counts:

@@ -18,10 +18,10 @@ if not API_KEY:
     raise ValueError("Chưa tìm thấy GEMINI_API_KEY trong file .env!")
 
 INPUT_FILE = "data/samples/llm_reviews.csv"
-OUTPUT_FILE = "data/processed/llm_results.csv"
+OUTPUT_FILE = "data/samples/llm_results.csv"
 MODEL_NAME = "gemini-3.5-flash-lite"
 
-TEST_LIMIT = None     # Đặt = 10 để test thử. Đổi thành None khi chạy hết cả file.
+TEST_LIMIT = 10   # Đặt = 10 để test thử. Đổi thành None khi chạy hết cả file.
 SAVE_EVERY = 20      # Tự động lưu sau mỗi 20 dòng
 SLEEP_SECONDS = 6    # Nghỉ 6s/request để an toàn với giới hạn bản free
 
@@ -125,11 +125,11 @@ Review: "{cleaned}"
 def main():
     if os.path.exists(OUTPUT_FILE):
         print(f"Đọc file cũ để chạy tiếp: {OUTPUT_FILE}")
-        df = pd.read_csv(OUTPUT_FILE, dtype={"id": str, "listing_id": str}, encoding="utf-8-sig")
+        df = pd.read_csv(OUTPUT_FILE, dtype={"review_id": str, "listing_id": str}, encoding="utf-8-sig")
     else:
         if not os.path.exists(INPUT_FILE):
             raise FileNotFoundError(f"Không tìm thấy file đầu vào: {INPUT_FILE}")
-        df = pd.read_csv(INPUT_FILE, dtype={"id": str, "listing_id": str}, encoding="utf-8")
+        df = pd.read_csv(INPUT_FILE, dtype={"review_id": str, "listing_id": str}, encoding="utf-8")
 
     # Đảm bảo 4 cột đích luôn tồn tại và là kiểu chuỗi (tránh bug NaN -> float của Pandas)
     for col in LLM_COLS:

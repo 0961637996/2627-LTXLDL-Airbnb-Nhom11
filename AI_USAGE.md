@@ -47,7 +47,7 @@
   - Nhóm xác nhận chương trình đã đối chiếu đủ 100/100 mẫu, khắc phục tình trạng trước đó chỉ chấm được 83/100 mẫu do các dòng có giá trị `"error"`.
   - Sau khi đổi tên cột, điều chỉnh thứ tự và sắp xếp dữ liệu, nhóm kiểm tra lại các tệp CSV để bảo đảm những chuỗi `review_id` dài không bị làm tròn hoặc thay đổi. Việc đọc và ghi dữ liệu được thực hiện với `dtype=str` và `encoding="utf-8-sig"`.
 
-## Phần đóng góp của Nguyễn Duy Quý
+## Phần đóng góp của Nguyễn Đức Quý
 ### 1. Module `src/download.py` (Thu thập dữ liệu)
 * **Công cụ AI sử dụng:** Gemini.
 * **Nội dung hỗ trợ:**
@@ -58,7 +58,6 @@
   * Chạy kiểm tra thực tế để xác nhận tải đủ 16 tệp vào thư mục `data/raw/` và bổ sung tùy chọn `--skip-download` ở `run_pipeline.py` nhằm đảm bảo khả năng chạy lại trên dữ liệu cục bộ.
 
 ---
-
 ### 2. Module `src/baseline.py` (Phân tích cảm xúc cơ sở bằng từ điển & luật)
 * **Công cụ AI sử dụng:** Gemini.
 * **Nội dung hỗ trợ:**
@@ -70,8 +69,8 @@
   * Chạy kiểm thử trên toàn bộ tập `data/samples/llm_reviews.csv`, rà soát phân bố nhãn `base_sentiment`, `base_language` và đối chiếu kết quả trên tập 100 nhãn tay ở bước `evaluate.py`.
 
   ---
-
-### 6. Module `src/kpi.py` (Tính toán thông số từ dữ liệu đã làm sạch)
+## Phần đóng góp của Nguyễn Đình Thọ
+### 1. Module `src/kpi.py` (Tính toán thông số từ dữ liệu đã làm sạch)
 * **Công cụ AI sử dụng:** Claude
 * **Nội dung hỗ trợ:**
   * Hỗ trợ viết khung sườn code , chỉ rõ các phần todo (bộ 8 kpi ,... )
@@ -83,7 +82,7 @@
 
 ---
 
-### 7. Module `src/viz.py` (Trực quan hóa dữ liệu kpi)
+### 2. Module `src/viz.py` (Trực quan hóa dữ liệu kpi)
 * **Công cụ AI sử dụng:** claude, gemini
 * **Nội dung hỗ trợ:**
   * Giúp thu thập thông tin , các cách sử dụng biểu đồ phân tích dữ liệu thực tế từ những nguồn thực tế ,
@@ -92,3 +91,14 @@
 * **Phần tự kiểm chứng và chỉnh sửa của nhóm:**
   * Kiểm chứng dựa vào thị giác , thật sự dễ nhìn và dễ hiểu , chỉnh sửa code qua nhiều lần biểu đồ không như mong muốn
 
+---
+
+## Phần đóng góp của Hà Doãn Trọng 
+### 1. Module src/qa.py (Lọc dữ liệu phân công & Kiểm soát chất lượng QA)
+* *Công cụ AI sử dụng:* Gemini
+* *Nội dung hỗ trợ:*
+  * Gợi ý cấu trúc hàm log_qa ghi nhật ký quy tắc theo từng mốc (snapshot), bảng (table), điều kiện, lý do, hành động và biến động chỉ số (kpi_before / kpi_after).
+  * Hỗ trợ viết logic đọc dữ liệu lớn theo từng lô (chunksize=100_000) cho calendar và reviews, làm sạch thẻ HTML, chuẩn hóa khoảng trắng và gắn cờ kiểm tra trùng/lệch giữa các mốc.
+* *Phần tự kiểm chứng và chỉnh sửa của nhóm:*
+  * Tự chỉnh đường dẫn đọc file phân công về configs/phan_cong_1000_listing.csv và configs`/phan_cong_5000_review.csv`, đồng bộ ngưỡng giá (min_price, max_price), danh mục vùng/loại phòng và mẫu bình luận tự động từ configs/madrid.yaml.
+  * Tự điều chỉnh logic tách mẫu llm_reviews.csv và hand_labeled_reviews.csv ở mốc đầu tiên để giữ nguyên tệp nhãn tay nếu đã tồn tại, đồng thời kiểm tra đầu ra reports/qa_report.csv và các tệp trong data/processed/ sau khi chạy.
